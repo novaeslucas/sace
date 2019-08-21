@@ -21,7 +21,56 @@ public class Atendimento implements Serializable {
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
 
+    @Column(name = "data_cadastro", nullable = false)
+    private Date dataCadastro;
+
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+
+    public Atendimento(){
+        super();
+        this.ativo = true;
+        this.empresa = new Empresa();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 }
