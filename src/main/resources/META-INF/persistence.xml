@@ -4,7 +4,6 @@
 
 	<persistence-unit name="sace" transaction-type="JTA">
 		<jta-data-source>java:jboss/datasources/sace-ds</jta-data-source>
-		
 		<properties>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="false"/>
@@ -13,6 +12,19 @@
 			<property name="javax.persistence.validation.mode" value="none"/>
     		<property name="hibernate.validator.autoregister_listeners" value="false"/>
     		<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="cnpj" transaction-type="JTA">
+		<jta-data-source>java:jboss/datasources/cnpj-ds</jta-data-source>
+		<properties>
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="false"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+			<property name="javax.persistence.validation.mode" value="none"/>
+			<property name="hibernate.validator.autoregister_listeners" value="false"/>
+			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
 		</properties>
 	</persistence-unit>
 

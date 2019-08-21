@@ -8,7 +8,6 @@ import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceUnit;
 
 @RequestScoped
@@ -18,20 +17,22 @@ public class EntityManagerProducer implements Serializable {
 	
 	@PersistenceUnit(name="sace", unitName="sace")
 	private EntityManagerFactory emf;
-	
-	private EntityManager em;
-	
+
+	@PersistenceUnit(name="cnpj", unitName="cnpj")
+	private EntityManagerFactory emfCnpj;
+
 	@Produces
 	@Default
 	@RequestScoped
 	public EntityManager create(){
-		
-		if(em == null){
-			em = emf.createEntityManager();
-			em.setFlushMode(FlushModeType.AUTO);
-		}
-		
-		return em;
+		return emf.createEntityManager();
+	}
+
+	@Produces
+	@BDCnpj
+	@RequestScoped
+	public EntityManager createCnpj(){
+		return emfCnpj.createEntityManager();
 	}
 	
 	public void dispose(@Disposes EntityManager em){

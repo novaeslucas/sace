@@ -44,6 +44,15 @@ public class DateUtil {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
+
+	public static Date stringToDateBDFormat(String date){
+		try{
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			return sdf.parse(date);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
 	
 	public static String dateToString(Date date){
 		try{

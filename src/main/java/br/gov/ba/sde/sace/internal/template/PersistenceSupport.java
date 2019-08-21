@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import br.gov.ba.sde.sace.internal.producer.BDCnpj;
 import org.slf4j.Logger;
 
 import br.gov.ba.sde.sace.internal.api.Persistence;
@@ -28,6 +29,10 @@ public abstract class PersistenceSupport<T> implements Persistence<T> {
 
 	@Inject
 	private EntityManager entityManager;
+
+	@Inject
+	@BDCnpj
+	private EntityManager entityManagerCnpj;
 	
 	@Inject
 	private Logger logger;
@@ -42,6 +47,14 @@ public abstract class PersistenceSupport<T> implements Persistence<T> {
 		StringBuilder jql = new StringBuilder();
 		jql.append("from " + getEntityClass().getSimpleName());
 		Query query = getEntityManager().createQuery(jql.toString());
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<T> findAllCnpj() {
+		StringBuilder jql = new StringBuilder();
+		jql.append("from " + getEntityClass().getSimpleName());
+		Query query = getEntityManagerCnpj().createQuery(jql.toString());
 		return query.getResultList();
 	}
 
@@ -129,6 +142,11 @@ public abstract class PersistenceSupport<T> implements Persistence<T> {
 	protected EntityManager getEntityManager(){
 		logger.debug("persistence.factory.create " + entityManager);
 		return this.entityManager;
+	}
+
+	protected EntityManager getEntityManagerCnpj(){
+		logger.debug("persistence.factory.create " + entityManagerCnpj);
+		return this.entityManagerCnpj;
 	}
 	
 	private void getParams( Query query, Map<String, ?> params){
