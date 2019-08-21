@@ -19,8 +19,8 @@ public class EmpresaService extends ServiceSupport<Empresa, EmpresaPersistence> 
     private EmpresaPersistence empresaPersistence;
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void cadastrar(){
-
+    public void cadastrar(Empresa domain){
+        empresaPersistence.insert(domain);
     }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -35,6 +35,14 @@ public class EmpresaService extends ServiceSupport<Empresa, EmpresaPersistence> 
 
     public List<Empresa> buscar(Empresa filtros){
         return null;
+    }
+
+    public Empresa consultarCnpj(String cnpj){
+        return empresaPersistence.consultarCnpj(cnpj);
+    }
+
+    public Empresa obterPorCnpj(String cnpj){
+        return empresaPersistence.obterPorCnpj(cnpj);
     }
 
     @Override

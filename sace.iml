@@ -25,6 +25,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+          <factory-entry name="cnpj" />
           <factory-entry name="sace" />
         </datasource-mapping>
         <naming-strategy-map />
@@ -142,5 +143,6 @@
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.2.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.1" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces.extensions:resources-ckeditor:1.2.1" level="project" />
+    <orderEntry type="library" name="postgresql" level="project" />
   </component>
 </module>
