@@ -61,7 +61,16 @@ public class DateUtil {
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
-	} 
+	}
+
+	public static String dateToStringBDFormat(Date date){
+		try{
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			return sdf.format(date);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
 	
 	public static Date stringToDateTime(String date){
 		try{
