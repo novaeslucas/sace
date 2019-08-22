@@ -77,14 +77,10 @@
                 reader.onload = function(e) {
                     var data = e.target.result;
                     var cfb = XLSX.read(data, {type: 'binary'});
-                    console.log(cfb)
-                    cfb.SheetNames.forEach(function(sheetName) {
-                        // Obtain The Current Row As CSV
-                        var sCSV = XLSX.utils.sheet_to_csv(cfb.Sheets[sheetName], {FS:";",RS:"@sde@"});
-
-                        $(".csvTrigger").html(sCSV);
-                        startProgressBar();
-                    });
+                    var first_sheet_name = cfb.SheetNames[0];
+                    var sCSV = XLSX.utils.sheet_to_csv(cfb.Sheets[first_sheet_name], {FS:";",RS:"@sde@"});
+                    $(".csvTrigger").html(sCSV);
+                    startProgressBar();
                 };
 
                 // Tell JS To Start Reading The File.. You could delay this if desired
