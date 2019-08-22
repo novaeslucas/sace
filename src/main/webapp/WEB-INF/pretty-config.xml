@@ -54,5 +54,23 @@
 	</url-mapping>
 
 	<!-- Fim Administracao de usuarios -->
+
+	<!-- Importação -->
+
+	<url-mapping id="importacao">
+		<pattern value="/importacao" />
+		<view-id value="/importacao.jsf" />
+	</url-mapping>
+
+	<!-- Fim Importação -->
+
+	<!-- Buscar -->
+
+	<url-mapping id="buscar">
+		<pattern value="/buscar" />
+		<view-id value="/buscar.jsf" />
+	</url-mapping>
+
+	<!-- Fim Buscar -->
 	
 </pretty-config>
