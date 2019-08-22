@@ -1,6 +1,7 @@
 package br.gov.ba.sde.sace.service;
 
 import br.gov.ba.sde.sace.domain.Atendimento;
+import br.gov.ba.sde.sace.domain.CnaeAcumulado;
 import br.gov.ba.sde.sace.domain.Empresa;
 import br.gov.ba.sde.sace.internal.template.ServiceSupport;
 import br.gov.ba.sde.sace.persistence.AtendimentoPersistence;
@@ -72,6 +73,10 @@ public class AtendimentoService extends ServiceSupport<Atendimento, AtendimentoP
     public Empresa cadastrarEmpresa(Empresa empresa){
         empresaService.cadastrar(empresa);
         return empresa;
+    }
+
+    public List<CnaeAcumulado> filtrar(Date dataInicial, Date dataFinal){
+        return atendimentoPersistence.filtrar(dataInicial, dataFinal);
     }
 
     @Override
