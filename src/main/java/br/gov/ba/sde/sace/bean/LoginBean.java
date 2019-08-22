@@ -40,13 +40,7 @@ public class LoginBean implements Serializable {
 	
 	@Inject
 	private UsuarioService usuarioService;
-	
-	public void redirecionar(){
-		if(authenticated.isAuthenticated()){
-			Faces.redirectView("pretty:home");
-		}
-	}
-	
+
 	public String login(){
 		String result = null;
 		try{
@@ -54,11 +48,10 @@ public class LoginBean implements Serializable {
             Subject subject =  SecurityUtils.getSubject();
             subject.login(token);
             loadUser(user.toLowerCase());
-            result = "pretty:home";
+            result = "pretty:buscar";
 		} catch (Exception e) {
 			Faces.addMessage("Usuário ou senha inválidos!", SeverityType.ERROR);
 		}
-		
 		return result;
 	}
 	

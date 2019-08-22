@@ -5,15 +5,11 @@
 	
 	<ui:define name="content">
 		<div class="middle-box text-center animated fadeInDown">
-			<h1>404</h1>
-			<h3 class="font-bold">Página não encontrada.</h3>
+			<h3 class="font-bold">Sua sessão expirou.</h3>
 
 			<div class="error-desc">
-				Desculpe, mas a página que você está procurando não foi encontrada. Tente verificar o endereço por erro e, em seguida, pressione o botão de atualização no seu navegador.
-				<br/>
-				<br/>
 				<div class="error-desc">
-					<button type="button" class="btn btn-w-m btn-primary" onclick="window.history.back();">Voltar</button>
+					<button type="button" class="btn btn-w-m btn-primary" onclick="location.href='/empresas/login'">Login</button>
 				</div>
 			</div>
 		</div>
