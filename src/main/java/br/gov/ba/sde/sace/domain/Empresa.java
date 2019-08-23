@@ -3,6 +3,7 @@ package br.gov.ba.sde.sace.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "empresa")
@@ -59,6 +60,9 @@ public class Empresa implements Serializable {
 
     @Column(name = "data_cadastro")
     private Date dataCadastro;
+
+    @OneToMany(mappedBy="empresa")
+    private List<Atendimento> atendimentos;
 
     public Empresa(){
         super();
@@ -191,5 +195,13 @@ public class Empresa implements Serializable {
 
     public void setCodigoCnae(String codigoCnae) {
         this.codigoCnae = codigoCnae;
+    }
+
+    public List<Atendimento> getAtendimentos() {
+        return atendimentos;
+    }
+
+    public void setAtendimentos(List<Atendimento> atendimentos) {
+        this.atendimentos = atendimentos;
     }
 }

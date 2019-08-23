@@ -8,7 +8,7 @@
     <ui:define name="content">
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-9">
-                <h2>Filtrar</h2>
+                <h2>Buscar</h2>
             </div>
         </div>
 
@@ -25,7 +25,7 @@
                                     <label class="col-sm-2 col-form-label">Data de atendimento inicial</label>
                                     <div class="col-sm-10">
                                         <p:calendar id="dt-inicial"
-                                                    value="#{filtrarBean.dataInicial}"
+                                                    value="#{buscarBean.dataInicial}"
                                                     mask="true"
                                                     navigator="true"
                                                     locale="pt_BR"
@@ -33,11 +33,12 @@
                                                     autocomplete="off"/>
                                     </div>
                                 </div>
+                                <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Data de atendimento final</label>
                                     <div class="col-sm-10">
                                         <p:calendar id="dt-final"
-                                                    value="#{filtrarBean.dataFinal}"
+                                                    value="#{buscarBean.dataFinal}"
                                                     mask="true"
                                                     navigator="true"
                                                     locale="pt_BR"
@@ -50,7 +51,7 @@
                                     <div class="col-sm-4 col-sm-offset-2">
                                         <h:commandButton id="filtrar-lista" styleClass="btn btn-primary btn-md"
                                                          value="Filtrar"
-                                                         action="#{filtrarBean.filtrar}"
+                                                         action="#{buscarBean.filtrar}"
                                                          update="@form"/>
                                     </div>
                                 </div>
@@ -77,10 +78,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <ui:repeat var="c" value="#{filtrarBean.cnaeAcumulados}">
+                                            <ui:repeat var="c" value="#{buscarBean.cnaeAcumulados}">
                                                 <tr>
                                                     <td>
-                                                        <h:outputText value="#{c.codigoCnae}"/>
+                                                        <a href="/sace/cnae/detalhe/#{c.codigoCnae}">
+                                                            <h:outputText value="#{c.codigoCnae}"/>
+                                                        </a>
                                                     </td>
                                                     <td>
                                                         <h:outputText value="#{c.descricaoCnae}"/>

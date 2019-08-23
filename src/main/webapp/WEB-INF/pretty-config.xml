@@ -72,5 +72,14 @@
 	</url-mapping>
 
 	<!-- Fim Buscar -->
+
+	<!-- Detalhe CNAE -->
+
+	<url-mapping id="detalhe-cnae">
+		<pattern value="/cnae/detalhe/#{cnae}" />
+		<view-id value="/detalhe_cnae.jsf" />
+	</url-mapping>
+
+	<!-- Fim Detalhe CNAE -->
 	
 </pretty-config>

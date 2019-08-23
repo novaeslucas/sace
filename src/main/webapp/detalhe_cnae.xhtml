@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="#{appBean.default}">
+
+    <ui:define name="content">
+        <f:event listener="#{buscarBean.initDetalheCnae()}" type="preRenderView"/>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-9">
+                <h2>Detalhe do CNAE</h2>
+                <p>
+                    <h:outputText value="#{buscarBean.codigoCnae}"/> - <h:outputText value="#{buscarBean.descricaoCnae}"/>
+                </p>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            Lista de empresas
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover dataTables-empresas">
+                                        <thead>
+                                        <tr>
+                                            <th>Razão social</th>
+                                            <th>Nome fantasia</th>
+                                            <th>CNPJ</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <ui:repeat var="e" value="#{buscarBean.empresas}">
+                                            <tr>
+                                                <td>
+                                                    <h:outputText value="#{e.nome}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{e.fantasia}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{e.cnpj}"/>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAtendimentos">
+                                                        Ver atendimentos
+                                                    </button>
+                                                    <div class="modal inmodal fade" id="modalAtendimentos" tabindex="-1" role="dialog"  aria-hidden="true">
+                                                        <div class="modal-dialog modal-sm">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+                                                                    <h4 class="modal-title">Atendimentos</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <table class="table table-bordered table-hover dataTables-empresas">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Data do atendimento</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <ui:repeat var="a" value="#{e.atendimentos}">
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <h:outputText value="#{a.data}"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </ui:repeat>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

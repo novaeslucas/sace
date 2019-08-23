@@ -14,11 +14,6 @@
 	</session-config>
 
 	<context-param>
-		<param-name>primefaces.UPLOADER</param-name>
-		<param-value>auto</param-value>
-	</context-param>
-
-	<context-param>
 		<param-name>facelets.DEVELOPMENT</param-name>
 		<param-value>true</param-value>
 	</context-param>
@@ -138,15 +133,4 @@
 		<extension>svg</extension>
 		<mime-type>image/svg+xml</mime-type>
 	</mime-mapping>
-
-	<filter>
-		<filter-name>primeUploadFilter</filter-name>
-		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>primeUploadFilter</filter-name>
-		<servlet-name>Faces Servlet</servlet-name>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-
 </web-app>

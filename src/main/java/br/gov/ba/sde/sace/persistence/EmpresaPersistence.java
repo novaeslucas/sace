@@ -1,5 +1,6 @@
 package br.gov.ba.sde.sace.persistence;
 
+import br.gov.ba.sde.sace.domain.Cnae;
 import br.gov.ba.sde.sace.domain.Empresa;
 import br.gov.ba.sde.sace.internal.template.PersistenceSupport;
 import br.gov.ba.sde.sace.util.DateUtil;
@@ -66,5 +67,31 @@ public class EmpresaPersistence extends PersistenceSupport<Empresa> {
         }else{
             return null;
         }
+    }
+
+    public List<Empresa> obterPorCnae(String cnae) {
+        String hql = "from Empresa where codigoCnae = :codigoCnae and ativo = true";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("codigoCnae", cnae);
+        return find(hql, params);
+    }
+
+    public Cnae consultarCnae(String cnae){
+        EntityManager em = getEntityManagerCnpj();
+        String consultarCnpj = "select c.codigo as \"codigo\", " +
+                "c.descricao as \"descricao\" " +
+                "from cnae as c where c.codigo = '" + cnae + "';";
+        Session session = (Session) em.getDelegate();
+        Query q = session.createSQLQuery(consultarCnpj);
+        List result = q.list();
+        Cnae temp = null;
+        if(result.size() > 0){
+            Iterator iterator = result.iterator();
+            while (iterator.hasNext()) {
+                Object[] row = (Object[])iterator.next();
+                temp = new Cnae((String)row[0], (String)row[1]);
+            }
+        }
+        return temp;
     }
 }
