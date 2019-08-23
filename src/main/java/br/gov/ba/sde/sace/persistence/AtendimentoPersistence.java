@@ -2,6 +2,7 @@ package br.gov.ba.sde.sace.persistence;
 
 import br.gov.ba.sde.sace.domain.Atendimento;
 import br.gov.ba.sde.sace.domain.CnaeAcumulado;
+import br.gov.ba.sde.sace.domain.Empresa;
 import br.gov.ba.sde.sace.internal.template.PersistenceSupport;
 import br.gov.ba.sde.sace.util.DateUtil;
 import org.hibernate.Query;
@@ -9,10 +10,7 @@ import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class AtendimentoPersistence extends PersistenceSupport<Atendimento> {
 
@@ -36,6 +34,13 @@ public class AtendimentoPersistence extends PersistenceSupport<Atendimento> {
             lista.add(new CnaeAcumulado((String) row[0], (String) row[1], (BigInteger) row[2]));
         }
         return lista;
+    }
+
+    public List<Atendimento> obterPorEmpresa(Empresa empresa) {
+        String hql = "from Atendimento where empresa.id = :empresaId and ativo = true";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("empresaId", empresa.getId());
+        return find(hql, params);
     }
 
 }

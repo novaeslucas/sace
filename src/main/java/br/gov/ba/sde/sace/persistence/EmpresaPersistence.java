@@ -70,7 +70,7 @@ public class EmpresaPersistence extends PersistenceSupport<Empresa> {
     }
 
     public List<Empresa> obterPorCnae(String cnae) {
-        String hql = "from Empresa where codigoCnae = :codigoCnae and ativo = true";
+        String hql = "from Empresa where codigoCnae = :codigoCnae and ativo = true order by nome asc";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("codigoCnae", cnae);
         return find(hql, params);
@@ -80,7 +80,7 @@ public class EmpresaPersistence extends PersistenceSupport<Empresa> {
         EntityManager em = getEntityManagerCnpj();
         String consultarCnpj = "select c.codigo as \"codigo\", " +
                 "c.descricao as \"descricao\" " +
-                "from cnae as c where c.codigo = '" + cnae + "';";
+                "from cnae as c where c.codigo = '" + cnae + "' order by descricao";
         Session session = (Session) em.getDelegate();
         Query q = session.createSQLQuery(consultarCnpj);
         List result = q.list();

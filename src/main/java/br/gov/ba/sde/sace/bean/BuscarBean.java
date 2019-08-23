@@ -48,9 +48,14 @@ public class BuscarBean implements Serializable {
             String cnae = Faces.getRequest().getAttribute("cnae").toString();
             empresas = new ArrayList<Empresa>();
             empresas = empresaService.obterPorCnae(cnae);
-            Cnae result = empresaService.consultarCnae(cnae);
-            codigoCnae = result.getCodigo();
-            descricaoCnae = result.getDescricao();
+            if(empresas.size() > 0){
+                Cnae result = empresaService.consultarCnae(cnae);
+                codigoCnae = result.getCodigo();
+                descricaoCnae = result.getDescricao();
+                for (Empresa e : empresas){
+                    e.setAtendimentos(atendimentoService.obterPorEmpresa(e));
+                }
+            }
         }
     }
 

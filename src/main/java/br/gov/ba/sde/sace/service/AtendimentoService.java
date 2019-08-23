@@ -79,6 +79,10 @@ public class AtendimentoService extends ServiceSupport<Atendimento, AtendimentoP
         return atendimentoPersistence.filtrar(dataInicial, dataFinal);
     }
 
+    public List<Atendimento> obterPorEmpresa(Empresa empresa){
+        return atendimentoPersistence.obterPorEmpresa(empresa);
+    }
+
     @Override
     protected AtendimentoPersistence getPersistence(){
         return atendimentoPersistence;
